@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll-behavior="smooth">
+<head>
+  <meta charSet="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>^-^ sk.md.firdous ^-^</title>
+  <meta name="description" content="designed & developed by sk.md.firdous"/>
+  <link rel="icon" href="https://www.arddev.in/assets/favicon.jpg"/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Clash Grotesk Variable"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+            syne: ['"Syne"', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body class="antialiased">
+
+  <!-- Custom Cursor -->
+  <div id="custom-cursor" class="hidden md:block fixed pointer-events-none z-[9999] rounded-full mix-blend-difference bg-white" style="width: 20px; height: 20px; top: 0; left: 0; transform: translate(-50%, -50%); transition: width 0.2s ease, height 0.2s ease;"></div>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="fixed inset-0 z-100 flex flex-col items-center justify-center bg-[#111] text-white transition-opacity duration-800 opacity-100 cursor-pointer" style="transition: opacity 0.8s ease;">
+    <div class="text-sm tracking-widest opacity-80 uppercase animate-fade-up">sk.md.firdous © est. 2026</div>
+    <div class="mt-8 text-xs text-zinc-500 uppercase tracking-widest animate-pulse">[ Click Anywhere To Enter ]</div>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bg-music" src="./bg-music.mp3" loop preload="auto"></audio>
+
+  <!-- Music Button -->
+  <button id="music-btn" aria-label="Play music" class="fixed bottom-6 left-6 z-50 bg-black/80 text-white w-12 h-12 rounded-full flex items-center justify-center transition-transform hover:scale-110" style="background: rgba(0,0,0,0.8);">
+    <svg id="music-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 3v18l15-9L5 3z" fill="currentColor"></path>
+    </svg>
+  </button>
+
+  <main class="relative min-h-screen w-full bg-white top-0 left-0">
+    
+    <!-- Hero Content -->
+    <!-- Hero Content -->
+    <div class="relative flex h-[100vh] min-h-[800px] w-full flex-col md:flex-row overflow-hidden border-b border-black/5 bg-white" id="home">
+      
+      <!-- Background Text (Black) spanning full screen, visible on right half -->
+      <div class="pointer-events-none absolute inset-0 z-0 flex flex-col justify-start pt-[2vh] text-black">
+        <div class="w-full px-4">
+          <h1 class="text-[10vw] leading-[0.8] flex flex-col w-full tracking-[-0.05em] uppercase m-0 p-0 font-black">
+            <span class="block text-right pr-5">DESIGNER</span>
+            <div class="flex justify-end w-full mt-2">
+              <span class="text-[10vw] developer-text-black">& DEVELOPER</span>
+            </div>
+          </h1>
+        </div>
+      </div>
+
+      <!-- Left (Image Split) -->
+      <div class="relative h-[50vh] md:h-screen md:w-1/2 bg-black z-10 order-1 overflow-hidden">
+        <!-- Image -->
+        <div class="absolute inset-0 z-0">
+          <img alt="Hero Portrait" loading="eager" class="object-cover object-[75%_center] grayscale hover:grayscale-0 transition-all duration-1000 h-full w-full opacity-90" src="./myimage1.jpeg"/>
+        </div>
+        
+        <!-- Foreground Text (White) clipped by left half -->
+        <div class="absolute inset-0 w-screen pointer-events-none z-20">
+          <div class="pointer-events-none absolute inset-0 flex flex-col justify-start pt-[2vh] text-white">
+            <div class="w-full px-4">
+              <h1 class="text-[10vw] leading-[0.8] flex flex-col w-full tracking-[-0.05em] uppercase m-0 p-0 font-black">
+                <span class="block text-right pr-5">DESIGNER</span>
+                <div class="flex justify-end w-full mt-2">
+                  <span class="text-[10vw] developer-text-white">& DEVELOPER</span>
+                </div>
+              </h1>
+            </div>
+          </div>
+        </div>
+        
+        <nav class="absolute bottom-12 right-12 z-50 flex flex-col items-end gap-[2px]">
+          <a href="#home" class="text-white text-[1.25rem] font-black uppercase tracking-[-0.02em] hover:opacity-50 transition-opacity">HOME</a>
+          <a href="#about" class="text-white text-[1.25rem] font-black uppercase tracking-[-0.02em] hover:opacity-50 transition-opacity">ME</a>
+          <a href="#portfolio" class="text-white text-[1.25rem] font-black uppercase tracking-[-0.02em] hover:opacity-50 transition-opacity">PORTFOLIO</a>
+          <a href="#services" class="text-white text-[1.25rem] font-black uppercase tracking-[-0.02em] hover:opacity-50 transition-opacity">SERVICES</a>
+          <a href="#get-in-touch" class="text-white text-[1.25rem] font-black uppercase tracking-[-0.02em] hover:opacity-50 transition-opacity">GET IN TOUCH</a>
+        </nav>
+      </div>
+
+      <!-- Right (Text Split) -->
+      <div class="relative h-[50vh] md:h-screen md:w-1/2 flex flex-col justify-start items-center md:items-end md:pr-[2rem] lg:pr-[4rem] pt-[25vh] md:pt-[45vh] z-10 order-2 pointer-events-none">
+        <div class="w-full max-w-[380px] flex flex-col items-start px-6 md:px-0 pointer-events-auto">
+          
+          <div class="flex items-center gap-3 mb-2">
+            <!-- Red dot (live indicator) -->
+            <div class="relative flex h-[8px] w-[8px]">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#dc2626] opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-[8px] w-[8px] bg-[#dc2626]"></span>
+            </div>
+            
+            <p class="text-[1.1rem] font-[500] tracking-tight text-[#71717a] leading-[1.2] m-0">
+              I'm Firdous.
+            </p>
+          </div>
+          <p class="text-[1.05rem] font-[500] tracking-tight text-[#71717a] leading-[1.6] mb-8">
+            A student focused on building real-world tech solutions. Currently working on OATH. Uses AI-assisted development with a strong focus on system thinking. Aims to create practical, impactful products.
+          </p>
+          
+          <!-- Volume Slider -->
+          <div class="flex items-center gap-4 mb-8 w-full">
+            <span class="text-[0.85rem] font-[500] tracking-tight text-[#a1a1aa]">Volume</span>
+            <div class="relative flex-1 flex items-center h-5 w-full touch-none select-none">
+               <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.3" 
+                 class="volume-slider w-full cursor-pointer z-10" aria-label="Volume Slider" />
+            </div>
+          </div>
+
+          <!-- Pacman Game Mockup -->
+          <div class="relative w-full h-[85px] bg-[#18181b] rounded-2xl shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)] p-[6px] overflow-hidden flex items-center justify-center">
+             <div class="w-full h-full rounded-xl flex relative overflow-hidden bg-[#27272a] border-[2px] border-[#3f3f46]">
+                <!-- Exact SVG image from arddev's original reference instead of simulated CSS -->
+                <picture class="w-full h-full absolute inset-0">
+                  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/0day-Ashish/0day-Ashish/output/pacman-contribution-graph-dark.svg" class="w-full h-full object-cover rounded-md"/>
+                </picture>
+             </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="relative w-full bg-white" style="height:250vh">
+      <div class="sticky top-0 w-full flex flex-col justify-center px-8 md:px-16" style="height:100vh">
+        <div class="max-w-5xl">
+          <p class="text-zinc-400 uppercase tracking-widest text-xs mb-4 font-bold">Manifesto</p>
+          <h2 id="manifesto-text" class="text-[4vw] md:text-[2vw] leading-[1.5] font-sans font-black uppercase tracking-normal text-zinc-300 manifesto-words">
+            For me, design means aesthetics, clean solutions, and attention to UX. Create fast. On time. On brief. Bring ideas and adjustments grounded in design principles. Typography and animation are my key tools to bring interfaces alive. Building my own projects and open to new collaborations.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="w-full bg-[#0a0a0a] text-zinc-300 relative z-10 border-t border-white/10">
+      <!-- Section Header -->
+      <div class="w-full px-8 md:px-16 py-12 md:py-20 flex justify-between items-end border-b border-white/10">
+        <div>
+          <p class="font-mono text-sm uppercase tracking-widest text-zinc-500 mb-2">p. 004</p>
+          <h2 class="text-4xl md:text-6xl font-syne font-black uppercase tracking-tighter text-white">STUFF I BUILT</h2>
+        </div>
+        <div class="hidden md:block font-mono text-xs text-zinc-500 max-w-[200px] text-right">
+          Scroll down to explore some of my selected recent works.
+        </div>
+      </div>
+
+      <!-- Horizontal Scroll Wrapper -->
+      <div id="portfolio-pin-wrapper" class="w-full h-screen overflow-hidden relative">
+        <!-- Projects Container (300vw wide for 3 projects) -->
+        <div id="projects-container" class="flex flex-nowrap w-[300vw] h-full relative">
+          
+          <!-- Project 1 -->
+          <a href="https://fungrowapp.vercel.app" target="_blank" class="block relative w-screen h-screen flex-shrink-0 flex flex-col justify-between overflow-hidden group border-r border-white/10 project-panel cursor-pointer">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0 bg-black">
+               <img src="Sample%20Work/Fungro/Screenshot%202026-04-07%20000149.png" alt="Fungro" class="w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-opacity duration-700 project-bg group-hover:scale-105 transition-transform"/>
+            </div>
+            
+            <!-- Top Row -->
+            <div class="relative z-10 flex justify-between items-start w-full px-6 md:px-12 py-8 font-mono text-sm md:text-base uppercase tracking-widest text-zinc-400">
+               <span>01 / 03</span>
+               <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0 text-white">Visit Site ↗</span>
+            </div>
+            
+            <!-- Center Massive Title -->
+            <div class="relative z-10 flex-1 flex items-center justify-center w-full px-4 overflow-hidden pointer-events-none">
+               <h3 class="font-syne font-black uppercase tracking-tighter text-[15vw] md:text-[12vw] leading-[0.8] text-white text-center project-title mix-blend-difference -translate-x-12 md:-translate-x-[15vw]">FUNGRO</h3>
+            </div>
+            
+            <!-- Bottom Row -->
+            <div class="relative z-10 flex justify-between items-end w-full px-6 md:px-12 py-8 font-mono text-sm text-zinc-400 uppercase">
+               <span class="max-w-[250px] md:max-w-md leading-relaxed text-xs md:text-sm">A dynamic application with robust features.</span>
+               <span class="hidden md:block">2026</span>
+            </div>
+          </a>
+
+          <!-- Project 2 -->
+          <a href="https://oathownyourtime.com" target="_blank" class="block relative w-screen h-screen flex-shrink-0 flex flex-col justify-between overflow-hidden group border-r border-white/10 project-panel cursor-pointer">
+            <div class="absolute inset-0 z-0 bg-black">
+               <img src="Sample%20Work/OATH/Screenshot%202026-04-21%20030646%20-%20Copy.png" alt="OATH" class="w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-opacity duration-700 project-bg group-hover:scale-105 transition-transform"/>
+            </div>
+            <div class="relative z-10 flex justify-between items-start w-full px-6 md:px-12 py-8 font-mono text-sm md:text-base uppercase tracking-widest text-zinc-400">
+               <span>02 / 03</span>
+               <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0 text-white">Visit Site ↗</span>
+            </div>
+            <div class="relative z-10 flex-1 flex items-center justify-center w-full px-4 overflow-hidden pointer-events-none">
+               <h3 class="font-syne font-black uppercase tracking-tighter text-[15vw] md:text-[12vw] leading-[0.8] text-white text-center project-title mix-blend-difference">OATH</h3>
+            </div>
+            <div class="relative z-10 flex justify-between items-end w-full px-6 md:px-12 py-8 font-mono text-sm text-zinc-400 uppercase">
+               <span class="max-w-[250px] md:max-w-md leading-relaxed text-xs md:text-sm">Own Your Time. A premium productivity interface.</span>
+               <span class="hidden md:block">2026</span>
+            </div>
+          </a>
+
+          <!-- Project 3 -->
+          <a href="https://spidermansuit.vercel.app" target="_blank" class="block relative w-screen h-screen flex-shrink-0 flex flex-col justify-between overflow-hidden group border-r border-white/10 project-panel cursor-pointer">
+            <div class="absolute inset-0 z-0 bg-black">
+               <img src="Sample%20Work/Spider%20Suit/Screenshot%202026-04-07%20000731.png" alt="Spider Suit" class="w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-opacity duration-700 project-bg group-hover:scale-105 transition-transform"/>
+            </div>
+            <div class="relative z-10 flex justify-between items-start w-full px-6 md:px-12 py-8 font-mono text-sm md:text-base uppercase tracking-widest text-zinc-400">
+               <span>03 / 03</span>
+               <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0 text-white">Visit Site ↗</span>
+            </div>
+            <div class="relative z-10 flex-1 flex items-center justify-center w-full px-4 overflow-hidden pointer-events-none">
+               <h3 class="font-syne font-black uppercase tracking-tighter text-[15vw] md:text-[10vw] leading-[0.8] text-white text-center project-title mix-blend-difference">SPIDER<br/>SUIT</h3>
+            </div>
+            <div class="relative z-10 flex justify-between items-end w-full px-6 md:px-12 py-8 font-mono text-sm text-zinc-400 uppercase">
+               <span class="max-w-[250px] md:max-w-md leading-relaxed text-xs md:text-sm">An immersive Spiderman suit digital experience.</span>
+               <span class="hidden md:block">2026</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="w-full bg-white relative" style="height: 400vh;">
+      <div class="sticky top-0 h-screen w-full flex items-start" style="padding-top: 10vh;">
+        <div class="w-full px-6 md:px-12">
+          <div class="max-w-6xl mx-auto">
+            <div class="pb-6 border-b border-black mb-6">
+              <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-black">Services</h2>
+            </div>
+            <div class="relative w-full h-screen service-cards-container">
+              <div class="absolute left-0 top-0 w-full bg-white service-card shadow-[0_-10px_30px_rgba(0,0,0,0.05)] rounded-t-3xl" style="z-index:4">
+                <div class="py-8 md:py-10 px-4 md:px-8">
+                  <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-black">WEB DEVELOPMENT</h3>
+                </div>
+              </div>
+              <div class="absolute left-0 top-0 w-full bg-white service-card shadow-[0_-10px_30px_rgba(0,0,0,0.05)] rounded-t-3xl" style="z-index:3">
+                <div class="py-8 md:py-10 px-4 md:px-8 border-t border-zinc-200">
+                  <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-black">UX/UI DESIGN</h3>
+                </div>
+              </div>
+              <div class="absolute left-0 top-0 w-full bg-white service-card shadow-[0_-10px_30px_rgba(0,0,0,0.05)] rounded-t-3xl" style="z-index:2">
+                <div class="py-8 md:py-10 px-4 md:px-8 border-t border-zinc-200">
+                  <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-black">APP DEVELOPMENT</h3>
+                </div>
+              </div>
+              <div class="absolute left-0 top-0 w-full bg-white service-card shadow-[0_-10px_30px_rgba(0,0,0,0.05)] rounded-t-3xl" style="z-index:1">
+                <div class="py-8 md:py-10 px-4 md:px-8 border-t border-zinc-200">
+                  <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-black">BRAND DESIGN</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Jack of All Trades Section -->
+    <section class="relative w-full bg-white jack-section" style="height:210vh">
+      <div class="sticky top-0 h-screen w-full flex items-center overflow-hidden">
+        <div class="w-full px-4 md:px-8">
+          <div class="w-full flex flex-col justify-center gap-2 md:gap-4 jack-text-container">
+            <div class="flex items-center justify-start opacity-0 font-black uppercase text-zinc-900" style="font-size: 5.5vw; transform:translateY(-40px); line-height: 0.9; letter-spacing: -0.03em;">JACK</div>
+            <div class="flex items-center justify-start opacity-0 font-black uppercase text-zinc-900" style="font-size: 5.5vw; transform:translateY(-40px); line-height: 0.9; letter-spacing: -0.03em;">OF</div>
+            <div class="flex items-center justify-start opacity-0 font-black uppercase text-zinc-900" style="font-size: 5.5vw; transform:translateY(-40px); line-height: 0.9; letter-spacing: -0.03em;">ALL.</div>
+            <div class="flex items-center justify-start opacity-0 font-black uppercase text-zinc-900" style="font-size: 5.5vw; transform:translateY(-40px); line-height: 0.9; letter-spacing: -0.03em;">TRADES</div>
+            <div class="flex items-center justify-start opacity-0 font-black uppercase text-zinc-900" style="font-size: 5.5vw; transform:translateY(-40px); line-height: 0.9; letter-spacing: -0.03em;">MASTER</div>
+            <div class="flex items-center justify-start opacity-0 font-black uppercase text-zinc-900" style="font-size: 5.5vw; transform:translateY(-40px); line-height: 0.9; letter-spacing: -0.03em;">OF</div>
+            <div class="flex items-center justify-start opacity-0 font-black uppercase text-zinc-900" style="font-size: 5.5vw; transform:translateY(-40px); line-height: 0.9; letter-spacing: -0.03em;">NONE</div>
+          </div>
+        </div>
+        
+        <div class="absolute z-20 pointer-events-none jack-scatter-container" style="right:12rem;top:16rem;width:80rem;height:28rem; opacity:0;" aria-hidden="true">
+          <!-- The View Counter (Pixel Art Girls) -->
+          <img src="https://count.getloli.com/@:0day-Ashish?theme=booru-koe&padding=4&offset=1&scale=2&align=top&pixelated=1&darkmode=auto" class="manifesto-scatter absolute" style="width:500px;right:-180px;top:-220px;transform:rotate(0deg)"/>
+          
+          <!-- Aesthetic Sticker (myimage.png) -->
+          <img src="./myimage.png" class="manifesto-scatter absolute" style="width:400px;right:520px;top:-40px;transform:rotate(8deg); filter: grayscale(100%) contrast(1.2); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 90%); mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 90%);"/>
+        </div>
+
+        <!-- Gooey Text Morpher (Bottom Right Empty Space) -->
+        <div class="absolute bottom-24 right-12 md:bottom-48 md:right-24 z-30 flex items-center justify-center w-96 h-48" style="filter: url(#threshold);">
+          <span id="text1" class="absolute inline-block select-none text-center font-semibold text-6xl md:text-7xl lg:text-8xl text-zinc-900 uppercase tracking-tighter" style="line-height: 0.9;"></span>
+          <span id="text2" class="absolute inline-block select-none text-center font-semibold text-6xl md:text-7xl lg:text-8xl text-zinc-900 uppercase tracking-tighter" style="line-height: 0.9;"></span>
+        </div>
+        
+        <!-- SVG Filter for Gooey Text -->
+        <svg class="absolute h-0 w-0" aria-hidden="true" focusable="false">
+          <defs>
+            <filter id="threshold">
+              <feColorMatrix
+                in="SourceGraphic"
+                type="matrix"
+                values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 255 -140"
+              />
+            </filter>
+          </defs>
+        </svg>
+
+      </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="w-full bg-white py-8 md:py-12 pb-32">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid grid-cols-12 gap-6 items-start">
+          <div class="col-span-12 md:col-span-4">
+            <div class="sticky top-20 z-10">
+              <h2 class="text-4xl lg:text-6xl font-black uppercase text-zinc-900 text-left tracking-wide">Tech Stack</h2>
+              <p class="mt-6 text-sm text-zinc-500 max-w-md mx-auto md:mx-0">These are the primary tools and technologies I use to build performant, accessible, and delightful web experiences.</p>
+            </div>
+          </div>
+          <div class="col-span-12 md:col-span-8 flex justify-center md:justify-end">
+            <div class="tech-list w-full md:w-3/4 border-t border-b border-zinc-200">
+              <div class="flex items-center py-6 px-4 border-b border-zinc-200 hover:bg-zinc-50 transition-colors duration-300 cursor-pointer">
+                <div class="hidden md:block text-sm text-zinc-400 w-12 text-left">2+</div><div class="flex-1 text-left"><div class="text-lg font-bold text-zinc-900">React</div></div><div class="hidden md:block text-sm text-zinc-400 w-36 text-right">Frontend</div>
+              </div>
+              <div class="flex items-center py-6 px-4 border-b border-zinc-200 hover:bg-zinc-50 transition-colors duration-300 cursor-pointer">
+                <div class="hidden md:block text-sm text-zinc-400 w-12 text-left">2+</div><div class="flex-1 text-left"><div class="text-lg font-bold text-zinc-900">Next.js</div></div><div class="hidden md:block text-sm text-zinc-400 w-36 text-right">Framework</div>
+              </div>
+              <div class="flex items-center py-6 px-4 border-b border-zinc-200 hover:bg-zinc-50 transition-colors duration-300 cursor-pointer">
+                <div class="hidden md:block text-sm text-zinc-400 w-12 text-left">2+</div><div class="flex-1 text-left"><div class="text-lg font-bold text-zinc-900">Tailwind CSS</div></div><div class="hidden md:block text-sm text-zinc-400 w-36 text-right">Styling</div>
+              </div>
+              <div class="flex items-center py-6 px-4 border-b border-zinc-200 hover:bg-zinc-50 transition-colors duration-300 cursor-pointer">
+                <div class="hidden md:block text-sm text-zinc-400 w-12 text-left">2+</div><div class="flex-1 text-left"><div class="text-lg font-bold text-zinc-900">TypeScript</div></div><div class="hidden md:block text-sm text-zinc-400 w-36 text-right">Language</div>
+              </div>
+              <div class="flex items-center py-6 px-4 border-b border-zinc-200 hover:bg-zinc-50 transition-colors duration-300 cursor-pointer">
+                <div class="hidden md:block text-sm text-zinc-400 w-12 text-left">2+</div><div class="flex-1 text-left"><div class="text-lg font-bold text-zinc-900">Node.js</div></div><div class="hidden md:block text-sm text-zinc-400 w-36 text-right">Backend</div>
+              </div>
+              <div class="flex items-center py-6 px-4 border-b border-zinc-200 hover:bg-zinc-50 transition-colors duration-300 cursor-pointer">
+                <div class="hidden md:block text-sm text-zinc-400 w-12 text-left">2+</div><div class="flex-1 text-left"><div class="text-lg font-bold text-zinc-900">GSAP</div></div><div class="hidden md:block text-sm text-zinc-400 w-36 text-right">Animations</div>
+              </div>
+              <div class="flex items-center py-6 px-4 border-b border-zinc-200 hover:bg-zinc-50 transition-colors duration-300 cursor-pointer">
+                <div class="hidden md:block text-sm text-zinc-400 w-12 text-left">3+</div><div class="flex-1 text-left"><div class="text-lg font-bold text-zinc-900">Python</div></div><div class="hidden md:block text-sm text-zinc-400 w-36 text-right">Backend</div>
+              </div>
+              <div class="flex items-center py-6 px-4 border-b border-zinc-200 hover:bg-zinc-50 transition-colors duration-300 cursor-pointer">
+                <div class="hidden md:block text-sm text-zinc-400 w-12 text-left">2+</div><div class="flex-1 text-left"><div class="text-lg font-bold text-zinc-900">PostgreSQL</div></div><div class="hidden md:block text-sm text-zinc-400 w-36 text-right">Database</div>
+              </div>
+              <div class="flex items-center py-6 px-4 hover:bg-zinc-50 transition-colors duration-300 cursor-pointer">
+                <div class="hidden md:block text-sm text-zinc-400 w-12 text-left">2+</div><div class="flex-1 text-left"><div class="text-lg font-bold text-zinc-900">Vercel</div></div><div class="hidden md:block text-sm text-zinc-400 w-36 text-right">Hosting</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Get In Touch -->
+    <section id="get-in-touch" class="relative z-10 w-full bg-white flex flex-col justify-start pb-24 md:pb-40" style="padding-top: 4rem;">
+      <div class="px-8 md:px-12 pt-8 max-w-6xl ml-4 md:ml-16 w-full">
+        <div class="grid grid-cols-1 md:grid-cols-[60%_60%] items-start">
+          <div class="flex flex-col">
+            <p class="text-zinc-500 uppercase tracking-widest text-sm font-semibold mb-2">Connect</p>
+            <h2 class="text-4xl md:text-6xl uppercase font-black text-zinc-900 tracking-wide">Let's talk about</h2>
+            <div class="relative mt-2" style="max-width: 300px;">
+              <select class="w-full bg-transparent text-zinc-900 font-medium text-xl appearance-none cursor-pointer pr-8 py-4 border-b border-zinc-300" style="border:none; border-bottom:1px solid #d4d4d8; outline:none;">
+                <option value="" disabled selected>Select...</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Collaboration">Collaboration</option>
+                <option value="App Development">App Development</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex flex-col gap-6 mt-12 md:mt-[15rem]">
+            <h2 class="text-4xl md:text-6xl uppercase font-black text-zinc-900 tracking-wide">My email to contact</h2>
+            <div class="flex flex-col sm:flex-row gap-6 mt-2">
+              <div class="flex-1 border-b border-zinc-300" style="min-width: 0;">
+                <input type="email" placeholder="Your email" class="w-full bg-transparent text-zinc-900 font-medium text-xl py-4" style="border:none; outline:none;" aria-label="Your email"/>
+              </div>
+              <button type="button" class="inline-flex items-center gap-3 text-zinc-900 font-black uppercase text-xl px-0 py-3 whitespace-nowrap" style="background:transparent; border:none; cursor:pointer;" aria-label="Submit design request">
+                <span>Make design</span><span aria-hidden="true" class="text-2xl">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Typography Banner -->
+    <section class="relative z-10 w-full bg-white pt-12 pb-20 md:pt-24 md:pb-32 flex items-start justify-center">
+      <div class="flex items-center whitespace-pre-wrap tracking-normal text-4xl sm:text-5xl md:text-7xl lg:text-[9vw] uppercase font-semibold text-center text-zinc-900 px-4 leading-[0.9]" style="transform: translateY(-2rem);">
+        <div id="typewriter-text" class="inline-block"></div><span class="inline-block animate-pulse ml-1 text-zinc-400 -mt-2">|</span>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full bg-zinc-950 text-white flex flex-col">
+      <!-- Top Bar -->
+      <div class="flex justify-between items-center px-8 md:px-16 py-2 text-lg text-white/70 border-b border-white/10">
+        <span>Located in India</span>
+        <span id="local-time" class="font-mono">Local Time</span>
+      </div>
+
+      <!-- Social Links -->
+      <div class="flex flex-1 items-center justify-between px-8 md:px-16 py-2 md:py-4 w-full">
+        <a href="#" target="_blank" class="font-medium uppercase text-white hover:text-zinc-400 transition-colors text-2xl md:text-4xl" style="text-decoration:none;">Instagram</a>
+        <div class="flex flex-col items-center gap-1">
+          <a href="mailto:skmdfirdousf34@gmail.com" class="font-medium uppercase text-white hover:text-zinc-400 transition-colors text-2xl md:text-4xl" style="text-decoration:none;">Email</a>
+          <a href="https://github.com/skmdfirdousf34" target="_blank" class="font-medium uppercase text-white hover:text-zinc-400 transition-colors text-2xl md:text-4xl" style="text-decoration:none;">GitHub</a>
+        </div>
+        <a href="https://www.linkedin.com/in/firdous-sk" target="_blank" class="font-medium uppercase text-white hover:text-zinc-400 transition-colors text-2xl md:text-4xl" style="text-decoration:none;">LinkedIn</a>
+      </div>
+
+      <!-- Bottom Marquee -->
+      <div class="overflow-hidden shrink-0 bg-zinc-950 border-t border-white/10">
+        <div class="flex py-2 md:py-4 marquee-track">
+          <span class="marquee-content flex shrink-0 items-center gap-8 pr-8 font-black text-2xl md:text-4xl lg:text-6xl text-white/90 whitespace-nowrap tracking-wide">
+            <span>© sk.md.firdous | 2026 </span><span>© sk.md.firdous | 2026 </span><span>© sk.md.firdous | 2026 </span><span>© sk.md.firdous | 2026 </span>
+          </span>
+          <span class="marquee-content flex shrink-0 items-center gap-8 pr-8 font-black text-2xl md:text-4xl lg:text-6xl text-white/90 whitespace-nowrap tracking-wide" aria-hidden="true">
+            <span>© sk.md.firdous | 2026 </span><span>© sk.md.firdous | 2026 </span><span>© sk.md.firdous | 2026 </span><span>© sk.md.firdous | 2026 </span>
+          </span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Oneko Cat Script -->
+  <script src="./oneko.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
