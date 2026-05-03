@@ -346,7 +346,48 @@ document.addEventListener("DOMContentLoaded", () => {
     }, "<0.2"); // Starts slightly after the text starts
   }
 
-  // 8. Typewriter Effect
+  // 8. Tech Stack Duality Animation (Zarcerog Style)
+  const techSection = document.querySelector('.tech-stack-section');
+  const techLeft = document.querySelector('.tech-left-col');
+  const techRight = document.querySelector('.tech-right-col');
+  const techDivider = document.querySelector('.tech-divider');
+
+  if (techSection && techLeft && techRight) {
+    // We pin the tech section and scrub the inner columns in opposite directions
+    const techTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: techSection,
+        start: "top top",
+        end: "+=200%", // Pins for 2x viewport height to give plenty of scroll room
+        pin: true,
+        scrub: 1, // Smooth scrolling
+      }
+    });
+
+    // 1. Divider line grows from top to bottom
+    if (techDivider) {
+      techTl.to(techDivider, {
+        scaleY: 1,
+        ease: "none"
+      }, 0);
+    }
+
+    // 2. Left column (Heading) starts high and moves significantly down
+    gsap.set(techLeft, { y: "-30vh" });
+    techTl.to(techLeft, {
+      y: "30vh",
+      ease: "none"
+    }, 0);
+
+    // 3. Right column (Tech List) starts low and moves significantly up
+    gsap.set(techRight, { y: "60vh" });
+    techTl.to(techRight, {
+      y: "-60vh",
+      ease: "none"
+    }, 0);
+  }
+
+  // 9. Typewriter Effect
   const typewriterText = document.getElementById('typewriter-text');
   if (typewriterText) {
     const phrases = ["LET'S MAKE DESIGN", "YOU WANT TO CLICK"];
