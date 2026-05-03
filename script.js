@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Attempt native autoplay (most browsers block this)
-  playMusic();
+  // Attempt native autoplay removed to ensure music only starts on click
+
 
   if (musicBtn) {
     musicBtn.addEventListener('click', (e) => {
